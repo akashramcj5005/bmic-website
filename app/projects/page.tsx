@@ -21,6 +21,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { useRouter } from "next/navigation";
 
 type ProjectType = "all" | "insulation" | "safety" | "ducting";
 
@@ -36,7 +37,7 @@ export default function ProjectsPage() {
       ? ductingImages
       : ductingImages.filter((p) => p.type === activeFilter);
 
-  console.log(filteredProjects);
+  const router = useRouter();
 
   const handlePrev = () => {
     if (selectedIndex !== null) {
@@ -53,13 +54,15 @@ export default function ProjectsPage() {
       );
     }
   };
+  const onBackToHome = () => router.push("/");
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-20% from-[#d0e0d4] via-[#c9dcce]/90 to-[#fffff] to-70% py-16">
         <div className="container mx-auto px-4 relative">
-          <Button variant="outline" className="mb-8 !bg-white">
+          <Button onClick={onBackToHome}
+            variant="outline" className="mb-8 !bg-white">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Home
           </Button>
