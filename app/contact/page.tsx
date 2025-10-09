@@ -143,7 +143,7 @@ export default function ContactPage() {
 
       const email = 'jagadeesan.bharath@gmail.com'
       const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
-      const gmailAppLink = `googlegmail:///co?to=${email}&subject=${encodeURIComponent(subject)}&body=${body}`;
+      // const gmailAppLink = `googlegmail:///co?to=${email}&subject=${encodeURIComponent(subject)}&body=${body}`;
       const gmailWebLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${body}`;
 
       const ua = navigator.userAgent.toLowerCase();
