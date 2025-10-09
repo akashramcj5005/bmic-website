@@ -15,7 +15,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface ContactFormData {
@@ -95,6 +95,18 @@ export default function ContactPage() {
     }));
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const validate = (): ContactFormErrors => {
     const errors: ContactFormErrors = {};
 
@@ -146,24 +158,10 @@ export default function ContactPage() {
       // const gmailAppLink = `googlegmail:///co?to=${email}&subject=${encodeURIComponent(subject)}&body=${body}`;
       const gmailWebLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${body}`;
 
-      const ua = navigator.userAgent.toLowerCase();
-
-      console.log(ua)
-      if (/iphone|ipad|ipod/.test(ua)) {
+      if (isMobile) {
         // Always open default mail app (Apple Mail or chosen default)
         window.location.href = mailtoLink;
       }
-      // Android devices
-      else if (/android/.test(ua)) {
-        // Try Gmail app first
-        window.location.href = mailtoLink;
-
-        // // Fallback if Gmail app not available
-        // setTimeout(() => {
-        //   window.location.href = mailtoLink;
-        // }, 800);
-      }
-      // Desktop fallback
       else {
         window.open(gmailWebLink, "_blank");
       }
