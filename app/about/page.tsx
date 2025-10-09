@@ -109,15 +109,15 @@ export default function AboutPage() {
   const stats = [
     {
       icon: <Globe className="h-6 w-6 text-green-700" />,
-      value: "5+",
-      title: "Countries Served",
-      description: "Global presence across six continents",
+      value: "100+",
+      title: "Industries Served",
+      description: "Delivering tailored solutions across diverse sectors",
     },
     {
       icon: <TrendingUp className="h-6 w-6 text-green-700" />,
-      value: "10K+",
-      title: "Projects Completed",
-      description: "Successfully delivered industrial solutions",
+      value: "1.5+",
+      title: "Million Sq.Mtr",
+      description: "Insulated Surface Area",
     },
     {
       icon: <ShieldCheck className="h-6 w-6 text-green-700" />,

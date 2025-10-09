@@ -489,7 +489,7 @@ export function Header() {
               </Link>
             </div>
 
-            <div className="border-t border-[#0000001A] ">
+            {/* <div className="border-t border-[#0000001A] ">
               <Link
                 href={"/blog"}
                 onClick={() => {
@@ -499,7 +499,7 @@ export function Header() {
               >
                 Blog
               </Link>
-            </div>
+            </div> */}
 
             <div className="border-t border-[#0000001A] ">
               <Link

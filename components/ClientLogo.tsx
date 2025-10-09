@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import {
@@ -15,12 +15,10 @@ import {
   dlf,
   akshaya,
   britannina,
-  // bro,
   adithyabrila,
 } from "@/components/figma/logos/index";
 
 const allLogos = [
-  // { name: "Boldrocchi", logo: bro },
   { name: "SPIC", logo: spic },
   { name: "Sivalaya", logo: sivalaya },
   { name: "Ramraj", logo: ramraj },
@@ -37,6 +35,18 @@ const allLogos = [
 ];
 
 const ClientLogo = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <section className="w-full py-16 bg-gradient-to-r from-green-800 via-green-800 to-green-700 overflow-hidden">
       <div className="container mx-auto px-4">
@@ -47,25 +57,47 @@ const ClientLogo = () => {
         </div>
 
         <div className="relative">
-          <div className="flex animate-scroll">
-            {[...allLogos, ...allLogos, ...allLogos].map((logo, index) => (
-              <div
-                key={`${logo.name}-${index}`}
-                className="flex-shrink-0 mx-4 bg-white rounded-lg shadow-md px-6 min-w-[200px] flex items-center gap-3 justify-center max-h-20"
-              >
-                <Image
-                  src={logo.logo}
-                  alt={logo.name}
-                  width={120}
-                  height={60}
-                  className="object-contain max-h-[60px] "
-                />
-              </div>
-            ))}
-          </div>
+          {/* Desktop: smooth infinite scroll */}
+          {!isMobile ? (
+            <div className="flex animate-scroll">
+              {[...allLogos, ...allLogos].map((logo, index) => (
+                <div
+                  key={`${logo.name}-${index}`}
+                  className="flex-shrink-0 mx-4 bg-white rounded-lg shadow-md px-6 min-w-[200px] flex items-center gap-3 justify-center max-h-20"
+                >
+                  <Image
+                    src={logo.logo}
+                    alt={logo.name}
+                    width={120}
+                    height={60}
+                    className="object-contain max-h-[60px]"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            /* Mobile: manual horizontal scroll */
+            <div className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2">
+              {allLogos.map((logo, index) => (
+                <div
+                  key={`${logo.name}-${index}`}
+                  className="flex-shrink-0 snap-center mx-3 bg-white rounded-lg shadow-md px-6 min-w-[160px] flex items-center justify-center max-h-20"
+                >
+                  <Image
+                    src={logo.logo}
+                    alt={logo.name}
+                    width={120}
+                    height={60}
+                    className="object-contain max-h-[50px]"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
+      {/* CSS for desktop animation only */}
       <style jsx>{`
         @keyframes scroll {
           0% {
@@ -85,6 +117,15 @@ const ClientLogo = () => {
 
         .animate-scroll:hover {
           animation-play-state: paused;
+        }
+
+        /* Hide scrollbar for mobile horizontal scroll */
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </section>
