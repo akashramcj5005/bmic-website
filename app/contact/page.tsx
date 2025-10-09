@@ -141,13 +141,14 @@ export default function ContactPage() {
       //   subject
       // )}&body=${body}`;
 
-      const email = ' jagadeesan.bharath@gmail.com'
+      const email = 'jagadeesan.bharath@gmail.com'
       const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
       const gmailAppLink = `googlegmail:///co?to=${email}&subject=${encodeURIComponent(subject)}&body=${body}`;
       const gmailWebLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${body}`;
 
       const ua = navigator.userAgent.toLowerCase();
 
+      console.log(ua)
       if (/iphone|ipad|ipod/.test(ua)) {
         // Always open default mail app (Apple Mail or chosen default)
         window.location.href = mailtoLink;
@@ -155,12 +156,12 @@ export default function ContactPage() {
       // Android devices
       else if (/android/.test(ua)) {
         // Try Gmail app first
-        window.location.href = gmailAppLink;
+        window.location.href = mailtoLink;
 
-        // Fallback if Gmail app not available
-        setTimeout(() => {
-          window.location.href = mailtoLink;
-        }, 800);
+        // // Fallback if Gmail app not available
+        // setTimeout(() => {
+        //   window.location.href = mailtoLink;
+        // }, 800);
       }
       // Desktop fallback
       else {
