@@ -512,6 +512,18 @@ export function Header() {
                 About us
               </Link>
             </div>
+
+            <div className="border-t border-[#0000001A] ">
+              <Link
+                href={"/contact"}
+                onClick={() => {
+                  setOpen(false);
+                }}
+                className="block w-full font-medium text-lg py-5 text-left"
+              >
+                Contact
+              </Link>
+            </div>
           </div>
         </div>
       )}

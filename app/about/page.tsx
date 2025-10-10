@@ -24,7 +24,7 @@ export default function AboutPage() {
     {
       name: "CT Murugesan",
       role: "Founder",
-      experience: "20+ years",
+      experience: "40+ years",
       expertise:
         " Pioneering entrepreneur who laid the foundation of Bharath Modern Insulation Company in 1975, with a vision to deliver reliable thermal and acoustic solutions that stand the test of time.",
       image: ProfilePlaceholder,
