@@ -7,7 +7,6 @@ import lotte from "./lotte.webp";
 import infosys from "./infosys.avif";
 import fourrts_logo from "./fourrts_logo.png";
 import foreach from "./foreach.avif";
-import dlf from "./dlf.svg";
 import akshaya from "./akshaya.png";
 import britannina from "./britannina.webp";
 import bro from "./bro.png";
@@ -23,7 +22,6 @@ export {
   infosys,
   fourrts_logo,
   foreach,
-  dlf,
   akshaya,
   britannina,
   bro,
